@@ -13,16 +13,14 @@ channel = connection.channel() # start a channel
 channel.queue_declare(queue='hello') # Declare a queue
 # send a message
 channel.basic_publish(exchange='', routing_key='hello', body='Hello CloudAMQP!')
-print(" [x] Sent 'Hello World!")
+print(" [x] Sent Hello World!")
 
 # create a function which is called on incoming messages
 def callback(ch, method, properties, body):
   print(" [x] Received: {}".format(body))
 
 # set up subscription on the queue
-channel.basic_consume(callback,
-    queue='hello',
-    no_ack=True)
+channel.basic_consume(queue='hello', on_message_callback=callback, no_ack=True)
 
 channel.start_consuming() # start consuming (blocks)
 
