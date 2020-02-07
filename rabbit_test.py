@@ -20,7 +20,7 @@ def callback(ch, method, properties, body):
   print(" [x] Received: {}".format(body))
 
 # set up subscription on the queue
-channel.basic_consume(queue='hello', on_message_callback=callback, no_ack=True)
+channel.basic_consume(queue='hello', on_message_callback=callback)
 
 channel.start_consuming() # start consuming (blocks)
 
