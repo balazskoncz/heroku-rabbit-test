@@ -5,6 +5,7 @@ import urllib
 # Parse CLODUAMQP_URL (fallback to localhost)
 url_str = os.environ.get('CLOUDAMQP_URL', 'amqp://guest:guest@localhost//')
 url = urllib.parse.urlparse(url_str)
+print(url)
 params = pika.ConnectionParameters(host=url.hostname, virtual_host=url.path[1:],
     credentials=pika.PlainCredentials(url.username, url.password))
 
