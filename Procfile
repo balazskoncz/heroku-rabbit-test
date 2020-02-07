@@ -1,0 +1,1 @@
+web: python ./rabbit_test.py
