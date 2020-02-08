@@ -19,7 +19,7 @@ print('virtual host: {}'.format(url.path[1:]))
 port = os.getenv('PORT', default=5000)
 print('Port: {}'.format(port))
 
-params = pika.ConnectionParameters(host=url.hostname,, port=port, virtual_host=url.path[1:],
+params = pika.ConnectionParameters(host=url.hostname, port=port, virtual_host=url.path[1:],
     credentials=pika.PlainCredentials(url.username, url.password))
 
 connection = pika.BlockingConnection(params) # Connect to CloudAMQP
