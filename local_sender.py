@@ -17,5 +17,5 @@ channel.queue_declare(queue='hello_r')
 
 channel.basic_publish(exchange='',
                       routing_key='hello_r',
-                      body='123')
+                      body='xtreme ')
 print(" [x] Message sent!'")

@@ -36,4 +36,5 @@ print(' [*] Waiting for messages On heroku :)')
 channel.start_consuming()
 
 print('Running server')
-app.run(debug=True, port=5000, host='0.0.0.0')
+port = os.getenv('PORT', default=5000)
+app.run(debug=False, port=port, host='0.0.0.0')
