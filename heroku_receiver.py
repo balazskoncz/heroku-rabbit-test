@@ -16,8 +16,11 @@ print('total url: {}'.format(url_str))
 print('host: {}'.format(url.hostname))
 print('virtual host: {}'.format(url.path[1:]))
 
+port = os.getenv('PORT', default=5000)
+print('Port: {}'.format(port))
+
 params = pika.ConnectionParameters(host=url.hostname, virtual_host=url.path[1:],
-    credentials=pika.PlainCredentials(url.username, url.password))
+    credentials=pika.PlainCredentials(url.username, url.password, port=port))
 
 connection = pika.BlockingConnection(params) # Connect to CloudAMQP
 
@@ -32,11 +35,11 @@ def callback(ch, method, properties, body):
 channel.basic_consume(
     queue='hello_r', on_message_callback=callback, auto_ack=True)
 
-# print(' [*] Waiting for messages On heroku :)')
-# channel.start_consuming()
+print(' [*] Waiting for messages On heroku :)')
+channel.start_consuming()
 
-print('Running server')
-port = os.getenv('PORT', default=5000)
-print('Port: {}'.format(port))
+# print('Running server')
+# port = os.getenv('PORT', default=5000)
+# print('Port: {}'.format(port))
 
-app.run(debug=False, port=port, host='0.0.0.0')
+# app.run(debug=False, port=port, host='0.0.0.0')
