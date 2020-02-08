@@ -10,12 +10,12 @@ print(hostname)
 print(credentials)
 
 connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host=hostname, credentials=credentials))
+    pika.ConnectionParameters(host=hostname, virtual_host='lftilnno', credentials=credentials))
 channel = connection.channel()
 
 channel.queue_declare(queue='hello_r')
 
 channel.basic_publish(exchange='',
                       routing_key='hello_r',
-                      body='Greeting from localhost!!!!!!')
-print(" [x] Sent 'Hello World!'")
+                      body='xxx')
+print(" [x] Message sent!'")
