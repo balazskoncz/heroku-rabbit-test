@@ -1,1 +1,1 @@
-web: python ./heroku_receiver.py
+web: python ./heroku_receiver.py 0.0.0.0:$PORT
