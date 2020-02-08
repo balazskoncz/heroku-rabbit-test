@@ -37,4 +37,6 @@ channel.start_consuming()
 
 print('Running server')
 port = os.getenv('PORT', default=5000)
+print('Port: {}'.format(port))
+
 app.run(debug=False, port=port, host='0.0.0.0')
