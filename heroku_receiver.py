@@ -2,8 +2,10 @@
 import pika 
 import os
 import urllib
-print('Starting receiver')
+from flask import Flask
 
+print('Starting receiver & server')
+app = Flask(__name__, static_folder='static') 
 # connection = pika.BlockingConnection(
 #     pika.ConnectionParameters(host=hostname, credentials=credentials))
 
@@ -29,6 +31,9 @@ def callback(ch, method, properties, body):
 
 channel.basic_consume(
     queue='hello_r', on_message_callback=callback, auto_ack=True)
+
+print('Running server')
+app.run(debug=False, port=5000, host='0.0.0.0')
 
 print(' [*] Waiting for messages On heroku :)')
 channel.start_consuming()

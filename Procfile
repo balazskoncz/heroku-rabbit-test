@@ -1,1 +1,1 @@
-worker: python ./heroku_receiver.py
+web: python ./heroku_receiver.py
