@@ -33,9 +33,9 @@ def callback(ch, method, properties, body):
 channel.basic_consume(
     queue='hello_r', on_message_callback=callback, auto_ack=True)
 
-print(' [*] Waiting for messages On NEw Thread ...')
-thread = Thread(channel.start_consuming())
-thread.start()
+# print(' [*] Waiting for messages On NEw Thread ...')
+# thread = Thread(channel.start_consuming())
+# thread.start()
 #channel.start_consuming()
 
 port = os.getenv('PORT', default=5000)
