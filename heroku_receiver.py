@@ -5,8 +5,8 @@ import urllib
 from flask import Flask
 from threading import Thread
 
-print('Starting receiver & server')
-app = Flask(__name__, static_folder='static') 
+print('Starting receiver alone')
+# app = Flask(__name__, static_folder='static') 
 # connection = pika.BlockingConnection(
 #     pika.ConnectionParameters(host=hostname, credentials=credentials))
 
@@ -27,18 +27,19 @@ channel = connection.channel()
 channel.queue_declare(queue='hello_r')
 
 def callback(ch, method, properties, body):
-    print(" [x] Received %r" % body)
+    print(" [X] Received %r" % body)
 
 
 channel.basic_consume(
     queue='hello_r', on_message_callback=callback, auto_ack=True)
 
-# print(' [*] Waiting for messages On NEw Thread ...')
+print(' [RECEIVER] Waiting for messages On NEw Thread ...')
+channel.start_consuming()
 # thread = Thread(channel.start_consuming())
 # thread.start()
 #channel.start_consuming()
 
-port = os.getenv('PORT', default=5000)
-print('Starting server on port: {}'.format(port))
+# port = os.getenv('PORT', default=5000)
+# print('Starting server on port: {}'.format(port))
 
-app.run(debug=False, port=port, host='0.0.0.0')
+# app.run(debug=False, port=port, host='0.0.0.0')
