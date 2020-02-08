@@ -35,6 +35,7 @@ channel.basic_consume(
 
 print(' [*] Waiting for messages On NEw Thread ...')
 thread = Thread(channel.start_consuming())
+thread.start()
 #channel.start_consuming()
 
 port = os.getenv('PORT', default=5000)
