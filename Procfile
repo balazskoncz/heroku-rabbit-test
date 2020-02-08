@@ -1,1 +1,1 @@
-web: python ./rabbit_test.py
+web: python ./heroku_receiver.py
