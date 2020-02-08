@@ -32,8 +32,8 @@ def callback(ch, method, properties, body):
 channel.basic_consume(
     queue='hello_r', on_message_callback=callback, auto_ack=True)
 
-print(' [*] Waiting for messages On heroku :)')
-channel.start_consuming()
+# print(' [*] Waiting for messages On heroku :)')
+# channel.start_consuming()
 
 print('Running server')
 port = os.getenv('PORT', default=5000)
